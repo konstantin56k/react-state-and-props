@@ -19,14 +19,16 @@
                     this.state = {
                         prodName: []
                     };
-                    window.setInterval(() => {
-                        const prodName = [...this.state.prodName, `Product ${faker.company.companyName()}`];
-                        this.setState({ prodName });
-                    }, 1000)
+                    this.addProdName = this.addProdName.bind(this)
+                }
+                addProdName() {
+                    const name = faker.company.companyName();
+                    this.setState({prodName: [...this.state.prodName, name]})
                 }
                 render(){
                     return (
                         <div>
+                            <button onClick = { this.addProdName }>Add company</button>
                             <h1>Random companies</h1>
                             <ul>
                                 {
@@ -34,7 +36,6 @@
                                         return (
                                             <li key={ idx }>
                                                 {name}
-                                                
                                             </li>
                                         )
                                     })
